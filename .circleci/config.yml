@@ -9,6 +9,8 @@ jobs:
       - run: npm install
       - run: npm run build
   lint:
+    docker:
+        - image: circleci/node:lts
     working_directory: ~/repo
     steps:
       - checkout
