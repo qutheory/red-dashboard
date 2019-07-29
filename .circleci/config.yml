@@ -6,27 +6,16 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/qutheory/connect-dashboard
-      - restore_cache:
-          key: v1-package-{{ checksum "package-lock.json" }}
       - run: npm install
-      - save_cache:
-          key: v1-package-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
       - run: npm run build
-      - persist_to_workspace:
-          root: .
-          paths: dist
+
   lint:
     docker:
         - image: circleci/node:lts
     working_directory: ~/repo
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/qutheory/connect-dashboard
+      - run: npm install
       - run: npm run lint
 
 workflows:
