@@ -29,6 +29,9 @@ npm install
 
 # Run the application
 npm run serve
+
+# Run JS lint, to make sure it passes before push
+npm run lint
 ```
 
 This will start up the application in debug mode, with hot reload enabled.
