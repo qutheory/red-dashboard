@@ -57,7 +57,9 @@ export default {
       if (serverStatusTimers[server.id]) {
         return
       }
+      /* eslint-disable */
       console.log('Checking server status', server.id)
+      /* eslint-enable */
       serverStatusTimers[server.id] = setTimeout(() => {
         this.$api.servers.show(server.id).then(server => {
           this.serversRaw.splice(i, 1, server)
@@ -68,6 +70,7 @@ export default {
             break
           case 'running':
             this.$notify.info('Server Running', 'Your newly created server is now running.')
+            break
           default:
             break
           }

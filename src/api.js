@@ -17,7 +17,9 @@ api.interceptors.request.use(request => {
   }
   return request
 }, error => {
+  /* eslint-disable */
   console.log(error)
+  /* eslint-enable */
 })
 
 api.interceptors.response.use(response => {

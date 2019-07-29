@@ -75,6 +75,8 @@ export default {
         return 'postgres'
       } else if(this.database.type == 'mysql') { 
         return 'root'
+      } else {
+        return 'Not found'
       }
     }
   },
