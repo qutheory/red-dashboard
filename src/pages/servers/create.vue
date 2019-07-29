@@ -145,7 +145,7 @@ export default {
     async createCredential() {
         this.$notify.loading.start()
         try {
-          var credential = await this.$api.credentials.create({ 
+          await this.$api.credentials.create({ 
             name: this.credentialName,
             provider: this.provider,
             accessKey: this.credentialAccessKey,

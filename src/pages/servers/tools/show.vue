@@ -33,10 +33,12 @@ export default {
     async load() {
       if (this.server) {
         this.$notify.loading.start()
+        /* eslint-disable */
         var serverTools = await this.$api.servers.tools(this.server.id).index()
         var serverTools = serverTools.filter(serverTool => {
           return serverTool.toolID.startsWith(this.toolName)
         })
+        /* eslint-enable */
         if (serverTools.length > 0) {
           this.tool = await this.$api.tools.show(serverTools[0].toolID)
           this.serverTool = serverTools[0]
@@ -84,7 +86,6 @@ export default {
       if (!this.toolsRaw) {
         return null
       }
-      var versions = {}
       var os = 'ubuntu' + this.server.ubuntuVersion
       os = os.replace('.', '')
       return this.toolsRaw.filter(tool => {

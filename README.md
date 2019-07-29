@@ -12,6 +12,13 @@ This repository contains all code used for the Frontend for vapor.red. All code 
 
 We are always happy to receive Pull Requests containing bug fixes or new features.
 
+Here are listed some of the tools used in the dashboard
+
+* [VueJS](https://vuejs.org/)
+* [Pug](https://pugjs.org)
+* [Axios](https://github.com/axios/axios)
+* [Sass](https://sass-lang.com/)
+
 If you want to contribute to the Vapor Red dashboard, you can get it up and running locally, and test against your live account. To do this, start by adding environment variables, you need to setup the following:
 
 ```
@@ -29,6 +36,9 @@ npm install
 
 # Run the application
 npm run serve
+
+# Run JS lint, to make sure it passes before push
+npm run lint
 ```
 
 This will start up the application in debug mode, with hot reload enabled.

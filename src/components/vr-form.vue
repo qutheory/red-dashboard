@@ -9,7 +9,7 @@
 export default {
   name: 'vr-form',
   methods: {
-    submit (e) {
+    submit () {
       this.$refs.hiddenSubmit.click()
     },
     callback (e) {

@@ -45,7 +45,7 @@ export default {
   methods: {
     async start() {
       var tool = this.toolsNotInstalled[0]
-      var res = await this.$api.servers.tools(this.server.id).create({
+      await this.$api.servers.tools(this.server.id).create({
         toolID: tool.id
       })
       this.$notify.info('Installing ' + tool.name.capitalize(), 'Please wait while this tool is installed.')
@@ -208,7 +208,7 @@ export default {
       Object.keys(this.requiredTools).forEach(toolName => {
         var tools = this.requiredTools[toolName]
 
-        var serverTools = this.serverTools.map(serverTool => {
+        this.serverTools.map(serverTool => {
           serverTool.tool = this.tools.filter(tool => {
             return tool.id == serverTool.toolID
           })[0]
