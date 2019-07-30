@@ -371,6 +371,10 @@ export default {
         .then(res => {
           return res.data.filter(tool => tool.id == id)[0]
         })
+    },
+    delete(id) {
+      return api.delete('/tools/' + id)
+        .then(res => res.data)
     }
   },
 

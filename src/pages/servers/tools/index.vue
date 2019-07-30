@@ -52,6 +52,11 @@ export default {
         return
       }
 
+      if (tool.status == 'uninstalling') {
+        this.$notify.info('Tool uninstalling', 'This tool is still unstalling. Please wait.')
+        return
+      }
+
       this.$router.push({ name: 'servers.tools.show', params: { 
         serverID: this.server.id, toolName: tool.name
       }})
@@ -135,7 +140,7 @@ export default {
           statusString = 'Installing'
           statusClass = 'loading'
           break
-        case 'deleting':
+        case 'uninstalling':
           statusString = 'Uninstalling'
           statusClass = 'loading'
           break
@@ -153,7 +158,7 @@ export default {
     },
     needsReloading() {
       return this.serverToolsRaw.filter(serverTool => {
-        return serverTool.status != 'installed'
+        return serverTool.status != 'installed' || serverTool.status != "uninstalling"
       }).length > 0
     }
   },
