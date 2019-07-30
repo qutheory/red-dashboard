@@ -1,6 +1,6 @@
 {
   "name": "red-dashboard",
-  "version": "master",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
