@@ -6,7 +6,7 @@
         div(v-if="serverTool.status == 'installed'")
           p Version #[code {{ versionString(tool.version) }}] is currently installed.
           div.buttons
-            vr-button(color="danger") Uninstall
+            vr-button(color="danger" @action="uninstall") Uninstall
         div(v-else)
           p Version #[code {{ versionString(tool.version) }}] is currently installing. Please wait.
       div(v-else)
@@ -53,6 +53,17 @@ export default {
         toolID: this.installToolID
       })
       this.$notify.info('Installing ' + this.toolName.readable(), 'Please wait while the tool installs.')
+      this.$router.push({ name: 'servers.tools.index' })
+    },
+    async uninstall() {
+      var question = `Are you sure you want to delete the Tool: '${this.toolName.readable()}'`
+      var answer = confirm(question)
+      if (!answer) {
+        return
+      }
+      await this.$api.tools.delete(this.serverTool.id)
+
+      this.$notify.info('Uninstalling ' + this.toolName.readable(), 'Please wait while the tool uninstalls.')
       this.$router.push({ name: 'servers.tools.index' })
     },
     versionString(version) {
