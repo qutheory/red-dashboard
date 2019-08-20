@@ -26,6 +26,10 @@
       vr-code-editor(v-model="script" mime="text/x-nginx-conf")
       vr-button(@action="updateScript") Update
     vr-box
+      h2 Update app
+      vr-form-input(name="branch" title="Branch" v-model="branch" required)
+      vr-button(@action="updateApp") Update
+    vr-box
       h2 Deploy Hook
       p Trigger automatic deployments by making an HTTP request to this endpoint.
       pre.code
@@ -53,6 +57,19 @@ export default {
           script: this.script
         })
         this.$notify.info('Deploy script updated', 'This app\'s deploy script has been updated.')
+      } catch (error) {
+        this.$notify.error('Could not update', error.message)
+      } finally {
+        this.$notify.loading.stop()
+      }
+    },
+    async updateApp() {
+      this.$notify.loading.start()
+      try {
+        await this.$api.apps.update(this.app.id, {
+          gitBranch: this.branch
+        })
+        this.$notify.info('Application updated', 'The application is now updated.')
       } catch (error) {
         this.$notify.error('Could not update', error.message)
       } finally {
@@ -110,7 +127,8 @@ export default {
     return {
       environment: null,
       script: null,
-      ready: false
+      ready: false,
+      branch: this.app.gitBranch
     }
   }
 }
