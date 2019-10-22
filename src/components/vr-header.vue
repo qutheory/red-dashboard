@@ -19,7 +19,6 @@
         hr
         a(href='#', @click="goAccount") Account
         hr
-        a(href='#', @click='switchCompany(null, $event)') Personal
         a(
           href='#', 
           v-for='company in companies', 
