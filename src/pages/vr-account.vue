@@ -32,6 +32,28 @@ div(class="vr-account")
 export default {
   name: 'vr-account',
   props: ['user'],
+  methods: {
+    async updatePassword() {
+      this.$notify.loading.start()
+      try {
+        await this.$api.users.updatePassword({
+          currentPassword: this.currentPassword, 
+          newPassword: this.newPassword
+        })
+        this.$notify.info('Password updated', 'Your password is now updated.')
+      } catch (error) {
+        this.$notify.error('Could not update', error.message)
+      } finally {
+        this.$notify.loading.stop()
+      }
+    }
+  },
+  data() {
+    return {
+      currentPassword: null,
+      newPassword: null
+    }
+  }
 }
 </script>
 
